@@ -5,32 +5,26 @@ class Solution {
 
         int n = nums.length;
         Arrays.sort(nums);
-
         List<List<Integer>> ans = new ArrayList<>();
+        for(int i=0;i<n-2;i++){
+            if(i> 0 && nums[i] == nums[i-1]){continue;}
 
-        for (int i = 0; i < n - 2; i++) {
-            
-            if(i>0 && nums[i] == nums[i-1]){continue;}
-
-            int left = i+1;
-            int right = n-1;
-
-            while(left<right){
-                int add = nums[i] + nums[left] + nums[right];
-
-                if(add == 0){
-                    ans.add(Arrays.asList(nums[i],nums[left],nums[right]));
-                    while(left<right && nums[left] == nums[left+1]){left++;}
-                    while(right>left && nums[right] == nums[right-1]){right--;}
-                    left++;
-                    right--;
+            int l = i+1; int r = n-1;
+            while(l<r){
+                int sum = nums[i] + nums[l] +nums[r];
+                if(sum == 0){
+                    ans.add(Arrays.asList(nums[i],nums[l],nums[r]));
+                    while(l<r && nums[l] == nums[l+1]){l++;}
+                    while(r>l && nums[r] == nums[r-1]){r--;}
+                    l++;
+                    r--;
                 }
-                else if(add<0){left++;}
-                else{right--;}
-                
+                else if(sum<0){l++;}
+                else{r--;}
             }
         }
         return ans;
+
         }
     
 }
