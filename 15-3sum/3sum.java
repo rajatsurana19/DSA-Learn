@@ -34,8 +34,9 @@ class Solution {
                     // List<Integer> temp = Arrays.asList(nums[i], nums[j], nums[k]);
                     //         Collections.sort(temp);
                             nu.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                            j++; k--;
                 }
-                if(sum<0){j++;}
+                else if(sum<0){j++;}
                 else{k--;}
             }
         }
