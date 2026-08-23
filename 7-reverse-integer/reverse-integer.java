@@ -1,26 +1,33 @@
 class Solution {
     public int reverse(int x) {
-        boolean negative = false;
+        boolean ne= false;
         if(x<0){
-            negative = true;
             x = -x;
-        }
-        int rem = 0;
-        long rev = 0;
-        while(x>0){
-            rem = x%10;
-            x/=10;
-            rev = rev * 10 +rem;
+            ne = true;
         }
 
-        if (negative) {
+        int rev = 0;
+        while(x>0){
+            int rem = x%10;
+            x/=10;
+             if (rev > Integer.MAX_VALUE / 10 ||
+                (rev == Integer.MAX_VALUE / 10 && rem > 7)) {
+                return 0;
+            }
+
+            if (rev < Integer.MIN_VALUE / 10 ||
+                (rev == Integer.MIN_VALUE / 10 && rem < -8)) {
+                return 0;
+            }
+            rev = rev * 10 + rem;
+
+        }
+
+        
+        if(ne){
             rev = -rev;
         }
 
-        if (rev > Integer.MAX_VALUE || rev < Integer.MIN_VALUE) {
-            return 0;
-        }
-
-        return (int) rev;
+        return(int) rev;
     }
 }
