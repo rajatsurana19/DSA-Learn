@@ -7,12 +7,14 @@ class Solution {
         for(int i=0;i<s.length();i++){
             char c = s.charAt(i);
 
-            if(ans.containsKey(c) && ans.get(c)>=start){
-                start = ans.get(c)+1;
-            }   
+            if(ans.containsKey(c)){
+                start = Math.max(start,ans.get(c)+1);
+            }
             ans.put(c,i);
             max = Math.max(max,i-start+1);
-        }
-        return max;        
+
+
+        }    
+        return max;  
     }
 }
